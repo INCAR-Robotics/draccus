@@ -395,7 +395,9 @@ def is_choice_type(cls: Any) -> bool:
 
     # 1. does not structurally match protocol --> False
     try:
-        if not issubclass(cls, ChoiceType):
+        if issubclass(cls, ChoiceType):
+            return True
+        else:
             return False
     except TypeError:
         return False  # Generic alias like list[int]
