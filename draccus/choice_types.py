@@ -108,10 +108,11 @@ class ChoiceRegistryBase(ChoiceType):
         if name in cls._choice_registry:
             other_choice_type = cls._choice_registry[name]
             if other_choice_type != choice_type:
-                raise ValueError(
-                    f"Cannot register {choice_type} as {name} because {other_choice_type} is already registered as"
-                    f" {name}"
-                )
+                print(f"Overwriting registered type {other_choice_type} with {choice_type} for {name}")
+                # raise ValueError(
+                #     f"Cannot register {choice_type} as {name} because {other_choice_type} is already registered as"
+                #     f" {name}"
+                # )
 
         cls._choice_registry[name] = choice_type
         return choice_type
