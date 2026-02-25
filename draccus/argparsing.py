@@ -120,7 +120,10 @@ class ArgumentParser(Generic[T]):
         # parse_known_args method to support both.
         if args is None:
             # args default to the system args
-            args = sys.argv[1:]
+            if sys.argv[1] == "train":
+                args = sys.argv[2:]
+            else:
+                args = sys.argv[1:]
         else:
             # make sure that args are mutable
             args = list(args)
