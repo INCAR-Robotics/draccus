@@ -7,7 +7,7 @@ __version__ = "0.8.0"
 
 from .argparsing import parse, wrap
 from .cfgparsing import dump, load, loads
-from .choice_types import CHOICE_TYPE_KEY, ChoiceRegistry, ChoiceType, PluginRegistry
+from .choice_types import CHOICE_TYPE_KEY, ChoiceRegistry, ChoiceType, PluginRegistry, ChoiceRegistryBase
 from .fields import field
 from .options import ConfigType, Options, config_type
 from .parsers.decoding import decode
@@ -19,6 +19,7 @@ set_config_type = Options.set_config_type
 
 __all__ = [
     "CHOICE_TYPE_KEY",
+    "ChoiceRegistryBase",
     "ChoiceRegistry",
     "ChoiceType",
     "ConfigType",

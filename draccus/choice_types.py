@@ -104,15 +104,17 @@ class ChoiceRegistryBase(ChoiceType):
     def register_subclass(cls, name: str, choice_type: Optional[Type[T]] = None):
         if choice_type is None:
             return functools.partial(cls.register_subclass, name)
-
-        # if name in cls._choice_registry:
-        #     other_choice_type = cls._choice_registry[name]
-        #     if other_choice_type != choice_type:
-        #         print(f"Overwriting registered type {other_choice_type} with {choice_type} for {name}")
-                # raise ValueError(
-                #     f"Cannot register {choice_type} as {name} because {other_choice_type} is already registered as"
-                #     f" {name}"
-                # )
+        if name in cls._choice_registry:
+            other_choice_type = cls._choice_registry[name]
+            if other_choice_type.__name__ != choice_type.__name__:
+                raise ValueError(
+                    f"Cannot register {choice_type} as {name} because {other_choice_type} is already registered as"
+                    f" {name}"
+                )
+            else:
+                print(f"hot-reloading type {choice_type} registered as {name} ")
+        else:
+            print(f"registering type {choice_type} as {name}")
 
         cls._choice_registry[name] = choice_type
         return choice_type
